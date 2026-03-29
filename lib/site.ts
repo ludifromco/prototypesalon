@@ -1,22 +1,30 @@
-/** Central contact and business copy — replace with production values. */
+/** Central contact and business copy — replace URL with production domain when live. */
 export const SITE = {
-  name: 'La Beautique',
-  phoneTel: '+15552345678',
-  phoneDisplay: '(555) 234-5678',
-  streetAddress: '1280 Union Square',
-  addressLocality: 'San Francisco',
-  addressRegion: 'CA',
-  postalCode: '94109',
+  name: 'Silk Beauty Salon',
+  legalName: 'Silk Beauty Salon Full Service',
+  phoneTel: '+18136333302',
+  phoneDisplay: '+1 (813) 633-3302',
+  streetAddress: '916 N Pebble Beach Blvd',
+  addressLocality: 'Sun City Center',
+  addressRegion: 'FL',
+  postalCode: '33573',
   addressCountry: 'US',
-  addressLines: ['1280 Union Square', 'San Francisco, CA 94109'],
-  url: 'https://labeautique.com',
-  bookingSectionId: 'pricing',
+  addressLines: [
+    '916 N Pebble Beach Blvd',
+    'Sun City Center, FL 33573',
+  ],
+  url: 'https://silkbeautysalon.com',
+  bookingSectionId: 'book',
   hours: {
     weekday: 'Mon–Fri: 10am–7pm',
     saturday: 'Saturday: 10am–6pm',
     sunday: 'Sunday: 12pm–5pm',
   },
 } as const
+
+export function bookingTelHref() {
+  return `tel:${SITE.phoneTel}`
+}
 
 export function bookingHashHref() {
   return `#${SITE.bookingSectionId}`

@@ -6,31 +6,39 @@ import { useInViewItemIds } from '@/hooks/use-in-view-item-ids'
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Mitchell',
-    service: 'Lash Extensions',
+    attribution: 'Maria G.',
     rating: 5,
-    text: 'La Beautique transformed my look! The lash extensions are absolutely gorgeous and the team is so professional. I cannot recommend them enough!',
+    text: 'I’ve been coming here for months and always leave feeling amazing.',
   },
   {
     id: 2,
-    name: 'Jessica Chen',
-    service: 'Skincare Treatment',
+    attribution: 'Jessica T.',
     rating: 5,
-    text: 'Finally found a salon that understands quality! My skin has never looked better. The skincare treatments are worth every penny.',
+    text: 'Very professional and clean. Highly recommend!',
   },
   {
     id: 3,
-    name: 'Amanda Rodriguez',
-    service: 'Nail Art',
+    attribution: 'Ashley R.',
     rating: 5,
-    text: 'The nail artists here are pure artists. My custom designs always turn out better than I imagined. Best beauty experience ever!',
+    text: 'Booking was easy and the results exceeded my expectations.',
   },
   {
     id: 4,
-    name: 'Emily Thompson',
-    service: 'Complete Beauty Package',
+    attribution: 'Nicole P.',
     rating: 5,
-    text: 'I booked multiple services and was blown away by the luxury experience. The attention to detail is incredible. A true gem!',
+    text: 'The team listens to what you want and delivers every time. My go-to salon.',
+  },
+  {
+    id: 5,
+    attribution: 'Rachel M.',
+    rating: 5,
+    text: 'Friendly staff, calm atmosphere, and my nails always look perfect.',
+  },
+  {
+    id: 6,
+    attribution: 'Danielle K.',
+    rating: 5,
+    text: 'I love that I can get my hair, lashes, and a facial in one visit.',
   },
 ]
 
@@ -38,23 +46,25 @@ export default function Testimonials() {
   const { visibleIds, setItemRef } = useInViewItemIds(testimonials.length)
 
   return (
-    <section id="testimonials" className="py-16 md:py-24 bg-background">
+    <section id="testimonials" className="py-20 md:py-28 bg-secondary/40">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 md:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Star className="text-primary fill-primary" size={24} />
-            <span className="text-primary font-semibold">TESTIMONIALS</span>
-            <Star className="text-primary fill-primary" size={24} />
+        <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-5">
+            <Star className="text-accent fill-accent" size={22} aria-hidden />
+            <span className="text-accent font-semibold text-sm tracking-wide">
+              TESTIMONIALS
+            </span>
+            <Star className="text-accent fill-accent" size={22} aria-hidden />
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 text-balance">
-            What Our Clients Say
+          <h2 className="text-4xl md:text-5xl font-serif font-semibold text-foreground mb-6 text-balance">
+            Loved by locals
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Hear from our happy clients about their experience at La Beautique.
+          <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
+            A few words from clients who book with us again and again.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
@@ -66,29 +76,25 @@ export default function Testimonials() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 h-full flex flex-col">
-                <div className="flex gap-1 mb-4">
+              <div className="bg-card rounded-xl border border-border/80 shadow-sm hover:shadow-md transition-shadow p-7 h-full flex flex-col">
+                <div className="flex gap-1 mb-4" aria-label={`${testimonial.rating} out of 5 stars`}>
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
                       key={i}
                       size={18}
-                      className="text-primary fill-primary"
+                      className="text-accent fill-accent"
+                      aria-hidden
                     />
                   ))}
                 </div>
 
-                <p className="text-sm text-foreground mb-6 flex-grow">
+                <p className="text-sm md:text-base text-foreground mb-6 flex-grow leading-relaxed">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
 
-                <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-foreground">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {testimonial.service}
-                  </p>
-                </div>
+                <p className="text-sm font-semibold text-foreground border-t border-border pt-4">
+                  — {testimonial.attribution}
+                </p>
               </div>
             </div>
           ))}

@@ -7,19 +7,33 @@ import { useInViewItemIds } from '@/hooks/use-in-view-item-ids'
 const galleryItems = [
   {
     id: 1,
-    title: 'Nail transformation',
-    before: '/before-after-nails-before.jpg',
-    after: '/before-after-nails-after.jpg',
-    beforeCaption: 'Before — manicure prep at the nail desk',
-    afterCaption: 'After — finished polish and care',
+    title: 'Hair',
+    before:
+      'https://images.unsplash.com/photo-1596703262919-862b0d71c4c3?auto=format&fit=crop&w=800&q=80',
+    after:
+      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    beforeCaption: 'Before — everyday style',
+    afterCaption: 'After — cut & finish',
   },
   {
     id: 2,
-    title: 'Skin glow-up',
-    before: '/before-after-skin-before.jpg',
-    after: '/before-after-skin-after.jpg',
-    beforeCaption: 'Before — everyday hydration at home',
-    afterCaption: 'After — professional facial treatment',
+    title: 'Skin',
+    before:
+      'https://images.unsplash.com/photo-1556228578-dd6d01c5c7d7?auto=format&fit=crop&w=800&q=80',
+    after:
+      'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80',
+    beforeCaption: 'Before — at-home routine',
+    afterCaption: 'After — facial glow',
+  },
+  {
+    id: 3,
+    title: 'Lashes',
+    before:
+      'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80',
+    after:
+      'https://images.unsplash.com/photo-1512201078372-9c6b2a0d528f?auto=format&fit=crop&w=800&q=80',
+    beforeCaption: 'Before — natural lash line',
+    afterCaption: 'After — fuller lashes',
   },
 ]
 
@@ -38,7 +52,7 @@ function BeforeAfterPair({
 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-      <figure className="relative w-full aspect-square rounded-lg overflow-hidden bg-secondary shadow-sm">
+      <figure className="relative w-full aspect-square rounded-xl overflow-hidden bg-secondary shadow-sm border border-border/60">
         <Image
           src={before}
           alt={`${title}: ${beforeCaption}`}
@@ -46,11 +60,11 @@ function BeforeAfterPair({
           className="object-cover"
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <figcaption className="absolute bottom-0 inset-x-0 bg-black/55 text-white text-sm font-medium px-3 py-2">
+        <figcaption className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-sm font-medium px-3 py-2.5">
           Before
         </figcaption>
       </figure>
-      <figure className="relative w-full aspect-square rounded-lg overflow-hidden bg-secondary shadow-sm">
+      <figure className="relative w-full aspect-square rounded-xl overflow-hidden bg-secondary shadow-sm border border-border/60">
         <Image
           src={after}
           alt={`${title}: ${afterCaption}`}
@@ -58,7 +72,7 @@ function BeforeAfterPair({
           className="object-cover"
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <figcaption className="absolute bottom-0 inset-x-0 bg-black/55 text-white text-sm font-medium px-3 py-2">
+        <figcaption className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-sm font-medium px-3 py-2.5">
           After
         </figcaption>
       </figure>
@@ -70,23 +84,25 @@ export default function Gallery() {
   const { visibleIds, setItemRef } = useInViewItemIds(galleryItems.length)
 
   return (
-    <section id="gallery" className="py-16 md:py-24 bg-secondary/30">
+    <section id="before-after" className="py-20 md:py-28 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 md:mb-20">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Heart className="text-primary" size={24} />
-            <span className="text-primary font-semibold">TRANSFORMATIONS</span>
-            <Heart className="text-primary" size={24} />
+        <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-5">
+            <Heart className="text-accent" size={22} aria-hidden />
+            <span className="text-accent font-semibold text-sm tracking-wide">
+              BEFORE &amp; AFTER
+            </span>
+            <Heart className="text-accent" size={22} aria-hidden />
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6 text-balance">
-            Real Results, Real Beauty
+          <h2 className="text-4xl md:text-5xl font-serif font-semibold text-foreground mb-6 text-balance">
+            Transformations you can see
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Side-by-side looks at the kind of results clients achieve at La Beautique.
+          <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
+            Real results from real clients
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12">
+        <div className="grid grid-cols-1 gap-14 md:gap-16">
           {galleryItems.map((item, index) => (
             <div
               key={item.id}
@@ -98,11 +114,9 @@ export default function Gallery() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <div className="mb-4">
-                <h3 className="text-2xl font-serif font-bold text-foreground">
-                  {item.title}
-                </h3>
-              </div>
+              <h3 className="text-2xl font-serif font-semibold text-foreground mb-5">
+                {item.title}
+              </h3>
               <BeforeAfterPair
                 before={item.before}
                 after={item.after}

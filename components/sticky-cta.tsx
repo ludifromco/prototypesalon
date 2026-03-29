@@ -1,37 +1,42 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Phone } from 'lucide-react'
-import { SITE } from '@/lib/site'
+import { bookingTelHref } from '@/lib/site'
 
 export default function StickyCTA() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isNearCTA, setIsNearCTA] = useState(false)
+  const [showBar, setShowBar] = useState(false)
+  const [hideNearBook, setHideNearBook] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 600)
+      setShowBar(window.scrollY > 320)
 
-      const pricingSection = document.getElementById('pricing')
-      if (pricingSection) {
-        const rect = pricingSection.getBoundingClientRect()
-        setIsNearCTA(rect.top < window.innerHeight * 0.5)
+      const bookSection = document.getElementById('book')
+      if (bookSection) {
+        const rect = bookSection.getBoundingClientRect()
+        setHideNearBook(rect.top < window.innerHeight * 0.55)
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  if (!isVisible || isNearCTA) return null
+  if (!showBar || hideNearBook) return null
 
   return (
-    <a
-      href={`tel:${SITE.phoneTel}`}
-      className="fixed bottom-6 right-6 z-30 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all motion-safe:transform motion-safe:hover:scale-110 flex items-center gap-2"
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 md:hidden border-t border-border bg-card/95 backdrop-blur-md px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_rgba(0,0,0,0.08)]"
+      role="region"
+      aria-label="Book now"
     >
-      <Phone size={20} aria-hidden />
-      <span className="font-medium hidden sm:inline">Call Now</span>
-    </a>
+      <a
+        href={bookingTelHref()}
+        className="flex w-full items-center justify-center rounded-xl bg-primary text-primary-foreground py-4 text-base font-semibold hover:bg-primary/90 transition-colors min-h-14 active:scale-[0.99]"
+      >
+        Book Now
+      </a>
+    </div>
   )
 }

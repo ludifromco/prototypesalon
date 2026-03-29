@@ -10,7 +10,15 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import { SITE } from '@/lib/site'
+import { SITE, bookingTelHref } from '@/lib/site'
+
+const navItems = [
+  { id: 'services', label: 'Services' },
+  { id: 'pricing', label: 'Pricing' },
+  { id: 'before-after', label: 'Results' },
+  { id: 'about', label: 'About' },
+  { id: 'faq', label: 'FAQ' },
+] as const
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -33,67 +41,68 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-card/90 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between gap-3 h-16 md:h-[4.5rem]">
           <Link
             href="/"
-            className="flex-shrink-0"
+            className="flex-shrink-0 min-w-0"
             aria-label={`${SITE.name} — home`}
           >
-            <span className="text-2xl md:text-3xl font-serif font-bold text-primary">
+            <span className="text-lg sm:text-2xl md:text-3xl font-serif font-semibold text-foreground tracking-tight">
               {SITE.name}
             </span>
           </Link>
 
-          <nav className="hidden md:flex gap-8 items-center" aria-label="Main">
-            <button
-              type="button"
-              onClick={() => scrollToSection('services')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Services
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('gallery')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Gallery
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('testimonials')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Testimonials
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('pricing')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-            >
-              Pricing
-            </button>
+          <nav
+            className="hidden lg:flex gap-6 xl:gap-8 items-center"
+            aria-label="Main"
+          >
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                className="text-foreground/90 hover:text-primary transition-colors text-sm font-medium"
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
 
-          <a
-            href={`tel:${SITE.phoneTel}`}
-            className="hidden md:inline-flex bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium text-sm hover:bg-primary/90 transition-colors"
-          >
-            Call Now
-          </a>
+          <div className="hidden md:flex items-center gap-4 flex-shrink-0">
+            <a
+              href={bookingTelHref()}
+              className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors whitespace-nowrap"
+            >
+              {SITE.phoneDisplay}
+            </a>
+            <a
+              href={bookingTelHref()}
+              className="inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-primary/90 transition-colors shadow-sm min-h-11"
+            >
+              Book Appointment
+            </a>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => setIsOpen((o) => !o)}
-            className="md:hidden p-2 text-foreground"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-            aria-controls="mobile-navigation"
-          >
-            {isOpen ? <X size={24} aria-hidden /> : <Menu size={24} aria-hidden />}
-          </button>
+          <div className="flex md:hidden items-center gap-2">
+            <a
+              href={bookingTelHref()}
+              className="text-xs font-semibold text-primary px-2 py-2 min-h-11 flex items-center"
+            >
+              Call
+            </a>
+            <button
+              type="button"
+              onClick={() => setIsOpen((o) => !o)}
+              className="p-2.5 text-foreground min-h-11 min-w-11 flex items-center justify-center"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isOpen ? <X size={22} aria-hidden /> : <Menu size={22} aria-hidden />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -102,48 +111,36 @@ export default function Header() {
           id="mobile-navigation"
           side="right"
           hideClose
-          className="md:hidden w-full sm:max-w-sm pt-14"
+          className="lg:hidden w-full sm:max-w-sm pt-14"
         >
           <SheetHeader className="sr-only">
             <SheetTitle>Navigation</SheetTitle>
             <SheetDescription>
-              Links to main sections and phone number.
+              Section links and booking.
             </SheetDescription>
           </SheetHeader>
-          <nav className="flex flex-col gap-2" aria-label="Mobile">
-            <button
-              type="button"
-              onClick={() => scrollToSection('services')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium text-left py-3 px-1"
-            >
-              Services
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('gallery')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium text-left py-3 px-1"
-            >
-              Gallery
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('testimonials')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium text-left py-3 px-1"
-            >
-              Testimonials
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('pricing')}
-              className="text-foreground hover:text-primary transition-colors text-sm font-medium text-left py-3 px-1"
-            >
-              Pricing
-            </button>
+          <nav className="flex flex-col gap-1" aria-label="Mobile">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                className="text-foreground hover:text-primary transition-colors text-base font-medium text-left py-3.5 px-1 min-h-12"
+              >
+                {item.label}
+              </button>
+            ))}
             <a
-              href={`tel:${SITE.phoneTel}`}
-              className="mt-4 bg-primary text-primary-foreground px-4 py-3 rounded-full font-medium text-sm hover:bg-primary/90 transition-colors text-center"
+              href={bookingTelHref()}
+              className="text-sm text-muted-foreground py-2"
             >
-              Call Now
+              {SITE.phoneDisplay}
+            </a>
+            <a
+              href={bookingTelHref()}
+              className="mt-4 bg-primary text-primary-foreground px-4 py-4 rounded-xl font-semibold text-base hover:bg-primary/90 transition-colors text-center min-h-12 flex items-center justify-center"
+            >
+              Book Appointment
             </a>
           </nav>
         </SheetContent>

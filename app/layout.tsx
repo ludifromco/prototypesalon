@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BeautySalon',
-  name: SITE.name,
+  name: SITE.legalName,
   telephone: SITE.phoneTel,
   url: SITE.url,
   address: {
@@ -48,16 +48,18 @@ const localBusinessJsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: 'La Beautique | Premium Beauty & Wellness Salon',
+  title: `${SITE.name} | Full-Service Beauty Salon | Sun City Center, FL`,
   description:
-    'Discover luxury beauty services including professional nails, lashes, skincare, and more. Book your appointment at La Beautique today.',
+    'Hair, nails, lashes, facials, and waxing in a clean, welcoming salon. Book your appointment at Silk Beauty Salon in Sun City Center.',
   keywords: [
     'beauty salon',
+    'Sun City Center',
+    'hair salon',
     'nails',
     'lashes',
-    'skincare',
-    'beauty services',
-    'luxury salon',
+    'facials',
+    'waxing',
+    'Silk Beauty Salon',
   ],
   authors: [{ name: SITE.name }],
   creator: SITE.name,
@@ -68,24 +70,23 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE.url,
     siteName: SITE.name,
-    title: 'La Beautique | Premium Beauty & Wellness Salon',
+    title: `${SITE.name} | Full-Service Beauty Salon`,
     description:
-      'Discover luxury beauty services including professional nails, lashes, skincare, and more.',
+      'Full-service beauty care in Sun City Center — hair, nails, lashes, facials, and waxing. Book your visit today.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&h=630&q=80',
         width: 1200,
         height: 630,
-        alt: 'La Beautique Beauty Salon',
+        alt: 'Silk Beauty Salon — modern salon interior',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'La Beautique | Premium Beauty & Wellness Salon',
+    title: `${SITE.name} | Full-Service Beauty Salon`,
     description:
-      'Discover luxury beauty services including professional nails, lashes, skincare, and more.',
-    creator: '@labeautique',
+      'Hair, nails, lashes, facials, and waxing in Sun City Center. Book your appointment.',
   },
   icons: {
     icon: [
@@ -112,7 +113,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F5EDE6' },
+    { media: '(prefers-color-scheme: light)', color: '#f9f7f6' },
     { media: '(prefers-color-scheme: dark)', color: '#1a1a1a' },
   ],
 }
