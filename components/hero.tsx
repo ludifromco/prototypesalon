@@ -2,10 +2,8 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { IMAGES } from '@/lib/images'
 import { bookingTelHref } from '@/lib/site'
-
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=85'
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,7 +16,7 @@ export default function Hero() {
     <section className="relative min-h-[min(100svh,880px)] md:min-h-[min(100svh,760px)] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src={HERO_IMAGE}
+          src={IMAGES.hero}
           alt="Bright, modern salon interior at Silk Beauty Salon"
           fill
           className="object-cover"

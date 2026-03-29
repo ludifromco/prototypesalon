@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Sparkles } from 'lucide-react'
 import { useInViewItemIds } from '@/hooks/use-in-view-item-ids'
+import { IMAGES } from '@/lib/images'
 import { bookingTelHref } from '@/lib/site'
 
 const services = [
@@ -10,37 +11,32 @@ const services = [
     id: 1,
     name: 'Hair Services',
     description: 'Cuts, color, and styling that fit your life — polished looks without the fuss.',
-    image:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    image: IMAGES.services.hair,
   },
   {
     id: 2,
     name: 'Nails',
     description:
       'Manicures and pedicures that stay neat longer — hands and feet you are proud to show off.',
-    image:
-      'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80',
+    image: IMAGES.services.nails,
   },
   {
     id: 3,
     name: 'Lashes',
     description: 'Effortless volume, every day — wake up looking refreshed.',
-    image:
-      'https://images.unsplash.com/photo-1512201078372-9c6b2a0d528f?auto=format&fit=crop&w=800&q=80',
+    image: IMAGES.services.lashes,
   },
   {
     id: 4,
     name: 'Facials',
     description: 'Healthy, glowing skin you can feel — tailored care for your skin type.',
-    image:
-      'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80',
+    image: IMAGES.services.facials,
   },
   {
     id: 5,
     name: 'Waxing',
     description: 'Smooth, comfortable hair removal — precise, professional, and hygienic.',
-    image:
-      'https://images.unsplash.com/photo-1616394584738-f3f2bb4f8c40?auto=format&fit=crop&w=800&q=80',
+    image: IMAGES.services.waxing,
   },
 ]
 

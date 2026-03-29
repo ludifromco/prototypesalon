@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
 
 const playfair = Playfair_Display({
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
       'Full-service beauty care in Sun City Center — hair, nails, lashes, facials, and waxing. Book your visit today.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&h=630&q=80',
+        url: IMAGES.og,
         width: 1200,
         height: 630,
         alt: 'Silk Beauty Salon — modern salon interior',

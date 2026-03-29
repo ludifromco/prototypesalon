@@ -3,35 +3,30 @@
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import { useInViewItemIds } from '@/hooks/use-in-view-item-ids'
+import { IMAGES } from '@/lib/images'
 
 const galleryItems = [
   {
     id: 1,
     title: 'Hair',
-    before:
-      'https://images.unsplash.com/photo-1596703262919-862b0d71c4c3?auto=format&fit=crop&w=800&q=80',
-    after:
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
+    before: IMAGES.beforeAfter.hairBefore,
+    after: IMAGES.beforeAfter.hairAfter,
     beforeCaption: 'Before — everyday style',
     afterCaption: 'After — cut & finish',
   },
   {
     id: 2,
     title: 'Skin',
-    before:
-      'https://images.unsplash.com/photo-1556228578-dd6d01c5c7d7?auto=format&fit=crop&w=800&q=80',
-    after:
-      'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80',
+    before: IMAGES.beforeAfter.skinBefore,
+    after: IMAGES.beforeAfter.skinAfter,
     beforeCaption: 'Before — at-home routine',
     afterCaption: 'After — facial glow',
   },
   {
     id: 3,
     title: 'Lashes',
-    before:
-      'https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&q=80',
-    after:
-      'https://images.unsplash.com/photo-1512201078372-9c6b2a0d528f?auto=format&fit=crop&w=800&q=80',
+    before: IMAGES.beforeAfter.lashesBefore,
+    after: IMAGES.beforeAfter.lashesAfter,
     beforeCaption: 'Before — natural lash line',
     afterCaption: 'After — fuller lashes',
   },
